@@ -76,9 +76,11 @@ param(4) = 1e-6;%nu_l
 param(5) = 1.2;%rho_bub
 param(6) = 1000;%rho_l
 
+dt = 0.5e-4; %seconds
+
 
 % Initial Conditions
-post0 = [0 1e-3]; % initial position
+post0 = [2e-3 0]; % initial position
 u_bub_t0= [0 0];
 r_bub_t0 = [param(3) 0];
 p_g_0 = 2000;
@@ -87,7 +89,7 @@ param(7) = p_g_0;
 param(8) = r_bub_t0(1);
 
 % Solve ODE
-[t,y] = ode15s(@(t,y) odefun(t,y,param), [0 55*(1/5000)], [post0 u_bub_t0 r_bub_t0]');
+[t,y] = ode15s(@(t,y) odefun(t,y,param), [0 100*dt], [post0 u_bub_t0 r_bub_t0]');
 
 % Plot
 figure(1)
